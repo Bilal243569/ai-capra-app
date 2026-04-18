@@ -1,0 +1,142 @@
+.career-container {
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.career-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.career-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.career-header p {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+}
+
+.career-grid, .wellness-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.career-card {
+  padding: 2rem;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.career-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 10px 30px rgba(0, 201, 114, 0.1);
+}
+
+.card-icon-3d {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: inset 0 4px 10px rgba(255,255,255,0.4), 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.bg-blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.bg-green { background: linear-gradient(135deg, #00c972, #047857); }
+.bg-gold { background: linear-gradient(135deg, #f59e0b, #b45309); }
+.bg-purple { background: linear-gradient(135deg, #a855f7, #6b21a8); }
+
+.career-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.career-card p {
+  color: var(--text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.career-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+
+.career-btn:hover {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
+}
+
+/* Wellness specific */
+.wellness-toolkit-card {
+  background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(21,167,224,0.1));
+  border: 1px solid rgba(168,85,247,0.3);
+}
+
+.star-rating {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.star {
+  color: #f59e0b;
+}
+
+.star.empty {
+  color: rgba(255,255,255,0.1);
+}
