@@ -5,16 +5,42 @@
   justify-content: space-between;
   padding: 0 1.5rem;
   border-bottom: 1px solid var(--border-color);
-  background-color: rgba(15, 23, 42, 0.8);
+  background-color: rgba(3, 4, 3, 0.8);
   position: sticky;
   top: 0;
   z-index: 50;
+  backdrop-filter: blur(12px);
 }
 
 .header-left {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  .header-left {
+    gap: 1rem;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+  .header {
+    padding: 0 1rem;
+  }
+  .header-title {
+    font-size: 1rem;
+  }
 }
 
 .header-brand {

@@ -140,3 +140,19 @@
 .star.empty {
   color: rgba(255,255,255,0.1);
 }
+
+@media (max-width: 768px) {
+  .career-container {
+    padding: 1.5rem 1rem;
+  }
+  .career-header h1 {
+    font-size: 2rem;
+  }
+  .career-grid, .wellness-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .career-card {
+    padding: 1.25rem;
+  }
+}

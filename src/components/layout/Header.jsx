@@ -1,13 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router';
-import { Coins, Settings, User, Bell } from 'lucide-react';
+import { Coins, Settings, User, Bell, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import './Header.css';
 
-export default function Header() {
+export default function Header({ onMenuClick }) {
   return (
     <header className="header glass">
       <div className="header-left">
+        <button className="mobile-menu-btn" onClick={onMenuClick}>
+          <Menu size={24} color="#fff" />
+        </button>
         <NavLink to="/" className="header-brand">
           <img src="/logo.png" alt="AI Capra Logo" style={{ height: '36px', filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.3))' }} />
           <span className="header-title animate-shimmer text-gradient">AI CAPRA</span>
@@ -26,13 +29,13 @@ export default function Header() {
         <motion.button 
           whileHover={{ scale: 1.05 }} 
           whileTap={{ scale: 0.95 }} 
-          className="btn-join-earn animate-shimmer-border"
+          className="btn-join-earn animate-shimmer-border hide-mobile"
         >
           <span className="relative-z10">Join & Earn</span>
           <div className="gradient-hover-bg"></div>
         </motion.button>
         
-        <div className="credits-badge">
+        <div className="credits-badge hide-mobile">
           <Coins size={16} color="var(--accent-primary)" />
           <span>1,250</span>
         </div>
@@ -40,7 +43,7 @@ export default function Header() {
         <motion.button 
           whileHover={{ scale: 1.05 }} 
           whileTap={{ scale: 0.95 }} 
-          className="icon-btn"
+          className="icon-btn hide-mobile"
         >
           <Bell size={20} />
           <span className="notification-dot"></span>
@@ -49,7 +52,7 @@ export default function Header() {
         <motion.button 
           whileHover={{ scale: 1.05 }} 
           whileTap={{ scale: 0.95 }} 
-          className="icon-btn"
+          className="icon-btn hide-mobile"
         >
           <Settings size={20} />
         </motion.button>

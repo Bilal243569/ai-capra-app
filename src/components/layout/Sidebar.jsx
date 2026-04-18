@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router';
 import { 
   MessageSquare, Image, Video, FileText, FileEdit, 
-  Briefcase, Brain, BookOpen, Plus, History, Sparkles, ChevronRight 
+  Briefcase, Brain, BookOpen, Plus, History, Sparkles, ChevronRight, X 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import './Sidebar.css';
@@ -44,9 +44,13 @@ const navCategories = [
   }
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ onClose }) {
   return (
     <aside className="sidebar glass">
+      <button className="mobile-close-btn" onClick={onClose}>
+        <X size={24} color="#fff" />
+      </button>
+
       <div className="sidebar-header">
         <div className="logo-container">
           <img src="/logo.png" alt="AI Capra Logo" style={{ height: '48px', filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.3))' }} />
@@ -56,7 +60,7 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <NavLink to="/custom-agents" className="custom-agent-btn">
+        <NavLink to="/custom-agents" className="custom-agent-btn" onClick={onClose}>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="custom-agent-content">
             <div className="custom-agent-glow"></div>
             <Sparkles size={20} color="#000" />
@@ -77,6 +81,7 @@ export default function Sidebar() {
               <NavLink 
                 key={item.path} 
                 to={item.path} 
+                onClick={onClose}
                 className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
               >
                 {({ isActive }) => (
