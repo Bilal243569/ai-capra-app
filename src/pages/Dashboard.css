@@ -278,3 +278,26 @@
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+  .stats-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .stat-divider {
+    display: none;
+  }
+  .quick-start-grid, .trending-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-section {
+    padding: 2rem 1.5rem;
+  }
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+}
+

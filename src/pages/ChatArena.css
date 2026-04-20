@@ -217,3 +217,26 @@
 .send-btn:hover {
   background-color: #00b865;
 }
+
+@media (max-width: 768px) {
+  .panels-container {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .chat-panel {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 50vh;
+    flex: none;
+  }
+  .chat-panel:last-child {
+    border-bottom: none;
+  }
+  .arena-divider {
+    display: none;
+  }
+  .chat-input-area {
+    padding: 1rem;
+  }
+}
+

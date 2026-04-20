@@ -156,3 +156,30 @@
   display: flex;
   gap: 1rem;
 }
+
+@media (max-width: 768px) {
+  .docs-container {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+  .analysis-layout, .generation-layout {
+    flex-direction: column;
+    height: auto;
+  }
+  .upload-zone-wrapper, .prompt-zone-wrapper {
+    padding: 1rem;
+  }
+  .results-zone {
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+  }
+  .paper-report {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  .tone-selector {
+    flex-direction: column;
+  }
+}
+

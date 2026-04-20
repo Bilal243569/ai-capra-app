@@ -181,3 +181,26 @@
 .btn-deploy:hover {
   transform: translateY(-2px);
 }
+
+@media (max-width: 768px) {
+  .agents-container {
+    padding: 1.5rem;
+  }
+  .agents-header h1 {
+    font-size: 2rem;
+  }
+  .agent-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .agent-card .btn-build {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+

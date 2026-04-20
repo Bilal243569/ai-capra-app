@@ -167,3 +167,23 @@
 .preview-card:hover .preview-overlay {
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .media-gen-container {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .control-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    flex: none;
+  }
+  .preview-area {
+    padding: 1rem;
+  }
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
