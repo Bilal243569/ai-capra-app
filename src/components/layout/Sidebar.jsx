@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router';
-import { 
-  MessageSquare, Image, Video, FileText, FileEdit, 
-  Briefcase, Brain, BookOpen, Plus, History, Sparkles, ChevronRight, X 
+import {
+  MessageSquare, Image, Video, FileText, FileEdit,
+  Briefcase, Brain, BookOpen, Plus, History, X, Menu
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import HistoryModal from '../ui/HistoryModal';
 import './Sidebar.css';
 
 const navCategories = [
@@ -44,75 +45,86 @@ const navCategories = [
   }
 ];
 
-export default function Sidebar({ onClose }) {
-  return (
-    <aside className="sidebar glass">
-      <button className="mobile-close-btn" onClick={onClose}>
-        <X size={24} color="#fff" />
-      </button>
+export default function Sidebar({ onClose, isCollapsed, onToggle }) {
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
-      <div className="sidebar-header">
-        <div className="logo-container">
-          <img src="/logo.png" alt="AI Capra Logo" style={{ height: '48px', filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.3))' }} />
-          <div className="logo-text-container">
-            <h1 className="logo-text text-gradient animate-shimmer" style={{ marginTop: '4px' }}>AI CAPRA</h1>
-            <span className="logo-subtitle">INTELLIGENCE REDEFINED</span>
+  return (
+    <>
+      <aside className={`sidebar glass ${isCollapsed ? 'collapsed' : ''}`}>
+        <button className="mobile-close-btn" onClick={onClose}>
+          <X size={24} color="#fff" />
+        </button>
+
+        <div className="sidebar-header">
+          <div className="sidebar-top-row">
+            <button className="toggle-btn hide-mobile" onClick={onToggle}>
+              <Menu size={20} />
+            </button>
+            <div className="logo-container">
+              <img src="/logo.png" alt="AI Capra Logo" style={{ height: '40px', filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.3))' }} />
+              {!isCollapsed && (
+                <div className="logo-text-container">
+                  <h1 className="logo-text text-gradient animate-shimmer" style={{ marginTop: '4px' }}>AI CAPRA</h1>
+                  <span className="logo-subtitle">INTELLIGENCE REDEFINED</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        <NavLink to="/custom-agents" className="custom-agent-btn" onClick={onClose}>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="custom-agent-content">
-            <div className="custom-agent-glow"></div>
-            <Sparkles size={20} color="#000" />
-            <div className="custom-agent-text">
-              <span className="title" style={{ color: '#000' }}>Custom Agent</span>
-              <span className="subtitle" style={{ color: '#000', opacity: 0.8 }}>Tailor your AI assistant</span>
+        <nav className="sidebar-nav text-muted">
+          {navCategories.map((cat, idx) => (
+            <div key={idx} className="nav-group">
+              <div className="nav-group-title" style={{ color: 'var(--accent-primary)' }}>
+                {isCollapsed ? '' : cat.title}
+              </div>
+              {cat.items.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={onClose}
+                  className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                >
+                  {({ isActive }) => (
+                    <>
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeIndicator"
+                          className="active-indicator"
+                          initial={false}
+                          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                      <item.icon size={18} className="nav-icon" />
+                      {!isCollapsed && <span className="nav-label">{item.label}</span>}
+                      {item.badge && !isCollapsed && <span className="nav-badge" style={{ color: '#000' }}>{item.badge}</span>}
+                    </>
+                  )}
+                </NavLink>
+              ))}
             </div>
-            <ChevronRight size={18} color="#000" />
-          </motion.div>
-        </NavLink>
-      </div>
+          ))}
+        </nav>
 
-      <nav className="sidebar-nav text-muted">
-        {navCategories.map((cat, idx) => (
-          <div key={idx} className="nav-group">
-            <div className="nav-group-title" style={{ color: 'var(--accent-primary)' }}>{cat.title}</div>
-            {cat.items.map((item) => (
-              <NavLink 
-                key={item.path} 
-                to={item.path} 
-                onClick={onClose}
-                className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
-              >
-                {({ isActive }) => (
-                  <>
-                    {isActive && (
-                      <motion.div 
-                        layoutId="activeIndicator"
-                        className="active-indicator"
-                        initial={false}
-                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                    <item.icon size={18} className="nav-icon" />
-                    <span className="nav-label">{item.label}</span>
-                    {item.badge && <span className="nav-badge" style={{ color: '#000' }}>{item.badge}</span>}
-                  </>
-                )}
-              </NavLink>
-            ))}
-          </div>
-        ))}
-      </nav>
+        <div className="sidebar-footer">
+          <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="btn-new-chat">
+            <Plus size={18} /> {!isCollapsed && 'New Chat'}
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="btn-history"
+            onClick={() => setIsHistoryOpen(true)}
+          >
+            <History size={18} /> {!isCollapsed && 'History'}
+          </motion.button>
+        </div>
 
-      <div className="sidebar-footer">
-        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="btn-new-chat">
-          <Plus size={18} /> New Chat
-        </motion.button>
-        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="btn-history">
-          <History size={18} /> History
-        </motion.button>
-      </div>
-    </aside>
+        <HistoryModal
+          isOpen={isHistoryOpen}
+          onClose={() => setIsHistoryOpen(false)}
+        />
+      </aside>
+    </>
   );
 }
