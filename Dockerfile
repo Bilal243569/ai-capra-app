@@ -4,6 +4,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
+RUN ls -la /app/dist
 
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
